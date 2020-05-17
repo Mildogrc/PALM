@@ -1,0 +1,114 @@
+[
+    {
+        "Id": "sha256:cbd6d98f85daf9eba868c9dd62b028f5f8b5346b6dc49989a9dad0717d1be658",
+        "RepoTags": [
+            "palm:latest"
+        ],
+        "RepoDigests": [],
+        "Parent": "sha256:a954c93da2df0cead23492a7b1e3df128f061cf1e92750e320191f4bc037206c",
+        "Comment": "",
+        "Created": "2019-09-25T03:06:04.974545637Z",
+        "Container": "68dcef140345996bdf906f077746a8ddefed5c241cc2b0f6c32d11b996b86b26",
+        "ContainerConfig": {
+            "Hostname": "68dcef140345",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "#(nop) ",
+                "ENTRYPOINT [\"flask\" \"run\"]"
+            ],
+            "Image": "sha256:a954c93da2df0cead23492a7b1e3df128f061cf1e92750e320191f4bc037206c",
+            "Volumes": null,
+            "WorkingDir": "/apps",
+            "Entrypoint": [
+                "flask",
+                "run"
+            ],
+            "OnBuild": null,
+            "Labels": {}
+        },
+        "DockerVersion": "19.03.2",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8"
+            ],
+            "Cmd": null,
+            "Image": "sha256:a954c93da2df0cead23492a7b1e3df128f061cf1e92750e320191f4bc037206c",
+            "Volumes": null,
+            "WorkingDir": "/apps",
+            "Entrypoint": [
+                "flask",
+                "run"
+            ],
+            "OnBuild": null,
+            "Labels": null
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 2095533360,
+        "VirtualSize": 2095533360,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/3e9e939037109a0366bd30c0a57129acad032c19e5f442f8eebb5062029ed1c4/diff:/var/lib/docker/overlay2/bdff796145fc3c8cbdc7bd643018aed819e71465ac0cec78db9676a1c31c5013/diff:/var/lib/docker/overlay2/e6884b749a3bcbc644cd8e4f838b5da511a098ed8c60fd04a700ac0770ec5912/diff:/var/lib/docker/overlay2/7e3790053738e842eeb280a88214871a393f6f5ef3232df8cbfdf3aba9834417/diff:/var/lib/docker/overlay2/a9318a43b36dfba48a0bba3193b0fb33e5bfc46932673bced93dadda5341c888/diff:/var/lib/docker/overlay2/aa0f04f81a729be33e00b0ac28f7655309b5b171f8782f5a87441df2699fa586/diff:/var/lib/docker/overlay2/b6213b750285119b32f2edcddd9d9b2fa8d30663f94142ec8bac25baeb03eaa1/diff:/var/lib/docker/overlay2/f83e529726031d553d52551adea8ebc406acd8a12905b367b0df5a13a4a0880a/diff:/var/lib/docker/overlay2/2003692426b7d0effcd90df8c1e1c603d87712cc111270fcddf66c0560d91997/diff:/var/lib/docker/overlay2/c09dc2746483426ccb9413ae203c7246b39c248c240245f1c45e19ba025bf7e2/diff:/var/lib/docker/overlay2/696a323c07bfeb69a6340044a523734592d71df7bf238e206e127449e0963eb3/diff:/var/lib/docker/overlay2/4da6a67bf81e04f33cb3c6c66429254c4fe03d3e5d01e86c50989bb99028d090/diff:/var/lib/docker/overlay2/2cb07292350214730c4e80dd5eb14771c5065194502c5490ec22ce5e7ce16c78/diff:/var/lib/docker/overlay2/aed02cc8ec569d8d60a6e9b3d2a44920104ae82d5f3838802903ee91a57ba65b/diff:/var/lib/docker/overlay2/6d092f1fdabff5f46482045a7a9b77ffdbdecda6c84c072d40dbd9817fe83f1b/diff:/var/lib/docker/overlay2/2cc0d717b34256f6394bdd0ff942602b44d5c6417c112e282d1ca08c22ef75b6/diff:/var/lib/docker/overlay2/910fc2cc7b5929a5641cc297f7bbc819f095a4369eb55e3b25888fbb032c466a/diff:/var/lib/docker/overlay2/baffe2ac55fb58c27e2d77a7a02511d33f17e67903e86cb6fc757e8d23018632/diff:/var/lib/docker/overlay2/77c9fa0bea3c90e87581746e3bd63846be8f2f3449af634f0de50c36f2496702/diff:/var/lib/docker/overlay2/5d88423b9764a2db76d77a3a3dfffbdf729e7fe8b2f13d1eb0d7ac157c5a41e0/diff:/var/lib/docker/overlay2/befc49dc2ed6d1330647d281218a0ce8e0cf279c841d68430c3f625529b1121e/diff:/var/lib/docker/overlay2/0ec989e02c0f6b0e9e3674a6145c21a0b6b8ab73033e2000b9d3a4fc4be9cf2a/diff",
+                "MergedDir": "/var/lib/docker/overlay2/f2c5fb1554ba6aaf809a48b6510216afe161cb30f7e906ff97da6a055b9c86ea/merged",
+                "UpperDir": "/var/lib/docker/overlay2/f2c5fb1554ba6aaf809a48b6510216afe161cb30f7e906ff97da6a055b9c86ea/diff",
+                "WorkDir": "/var/lib/docker/overlay2/f2c5fb1554ba6aaf809a48b6510216afe161cb30f7e906ff97da6a055b9c86ea/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:ba9de9d8475e7f5e40086358a1353b3cc080994fc6d31e4272dd3acb69b0151e",
+                "sha256:fbd2732ad777cb5db2515fa62b6122b797be233d01db02e0a19e5d894688cad6",
+                "sha256:dda1518598187bf87704acc22aa0ec2a67d9e7835c24346dfca118ab42c5cd0b",
+                "sha256:75e70aa52609fdbd63b58d46d6f7c20470062e1c9bb75616f7703a358a61e5ca",
+                "sha256:31835e84bcc0c1663895741501de796d86ee2bf17d0c0af39b980e6933e6be8e",
+                "sha256:f4cb77175ac9acaa1d444ccbff400c2b6c9061015997252beb1b48b9183602b6",
+                "sha256:dd7f77c80a16dc1da6a57e612374edbc923e18e53e8c457c89e6c122eda97bc1",
+                "sha256:652cdcb17d30add6b65ef29dd5b66b7b4a564e625566ed04cc47ceef79f431a6",
+                "sha256:4b8ec9124f1c01077f62a4f9b69396513b73a25d4711bd5f9ec22602f95ba384",
+                "sha256:a144de6e67e6e1babe9667d22ed9c9d42b75ec928fc6d18a99e65b7f03512e88",
+                "sha256:0b3f7680202efc38fcdd6d66146413462dcc2ac3e323cad788d4659e3a6c2fbb",
+                "sha256:f893cbdb0c4f0ef91ce997ff33594262848a42d3598d21873788c346961e2fc1",
+                "sha256:09c7df221465a5d84be4a0c275ecd94a02a9042db8698f8c51ad31cea4b42387",
+                "sha256:15f7b69c2955a253c07a9d1a8960fc65268487ced1a9a28c37af351743e73790",
+                "sha256:d23115727687d7b73e8cc74e8086eed2b96593a11f08ac09681b391d211bbf7a",
+                "sha256:0cb8087bd607d60f45b8deec8a71002ff56022038f9d9e3fe81a7e7a1215c2b3",
+                "sha256:5032be764c42bfd598612c3d1d3226d55f8928dd17fd2c765b3bed100ddae83d",
+                "sha256:2da78b43d7260fb70db5e63df76f9eac1a6a4b490f6a65f1a34f020ed03cc29a",
+                "sha256:fca8c1486139b88f9ee56701d71815b41cf6458fc9c3d5a863e40df032b5b9d9",
+                "sha256:0025f23b2ac406c4b08fc645a7c4ffd395880799e31b51da25e24cc7752ef0c6",
+                "sha256:ee4b50302ab8aca5fc857b3f7c8f0519cf581a4e1d3ad92775df88d81837107c",
+                "sha256:566e474c7734c0889c7c210bb331b298bb74a6e380619f5b17d2a29ffb41e46c",
+                "sha256:b127218d6f4e65bd2ae220eb155220e0c50334dd41de6443f1c6d344f3125674"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2019-09-25T03:06:05.387343839Z"
+        }
+    }
+]

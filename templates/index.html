@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta http-equiv="expires" CONTENT="Mon, 22 Jul 2002 11:12:01 GMT">
+  <title>PALM</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <!-- Custom fonts for this template -->
+  <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="static/css/agency.min.css" rel="stylesheet">
+  <link href="static/css/faq.css" rel="stylesheet">
+
+  <link rel='icon' href='static/favicon.ico' type='image/x-icon' />
+  <script src="static/jquery-3.3.1.min.js"></script>
+  <script src="static/bootstrap.min.js"></script>
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">MyPALM</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav text-uppercase ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#services">Pneumonia Detection</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#portfolio">Sample Images</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#faq-scroll-stop">FAQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#team">Team</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="masthead">
+    <div class="container">
+      <div class="intro-text">
+        <!-- <div class="intro-heading text-uppercase">Welcome to PALM!</div>
+        <div class="intro-lead-in">The most advanced Pnuemonia detection algorithm in the world</div>
+        <a hidden = "true" class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a>-->
+      </div>
+    </div>
+  </header>
+
+  <!-- Services -->
+  <section class="page-section" id="services">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Pneumonia Detection</h2>
+          <h3 class="section-subheading text-muted" id="gifstop">This is where you can test your own x-ray scans</h3>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-lg-12 text-center">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="filePicker" submit="image/jpg, image/png, image/jpeg">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+            <ul role="alert" hidden="true" id="noresume">
+              <li style="color:red">
+                <p class="help-block text-danger text-left">
+                  Please upload an Image <br>
+                </p>
+              </li>
+            </ul>
+            <ul role="alert" hidden="true" id="badresume">
+              <li style="color:red">
+                <p class="help-block text-danger text-left">
+                  Please upload the Image in the correct format (i.e. jpg, png)
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-lg-12 mt-3 text-left">
+          <button type="submit" class="btn btn-primary js-scroll-trigger" id="predict-button" href="#gifstop">Predict</button>
+          <button type="submit" class="btn btn-primary" id="loading-button" hidden=true>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+          </button>
+        </div>
+
+        <div class="col-lg-12 text-center mt-3">
+          <p><br>PALM score: <span id="Pneumonia-predict" hidden=true></span></p>
+          <img id="selected-image" src="">
+          <br>
+          <div>
+            <textarea hidden="true" id="base64textarea" placeholder="Base64 will appear here" class="form-control" rows="3"></textarea>
+          </div>
+          <div class="p-3 mb-2 bg-danger text-white" id="highchance" hidden=true>According to our PALM prediction, the
+            chance that you have Pneumonia is <span id="Pneumonia-predict-high"></span>, but do remember that our model
+            does not replace a diagnosis by an actual physician.<br>We suggest that you see your physician as soon as
+            possible.</div>
+          <div class="p-3 mb-2 bg-warning text-dark" id="mildchance" hidden=true>Our PALM model says that you have a
+            <span id="Pneumonia-predict-medium"></span> chance of having Pneumonia, and this is the grey area of our
+            model. So we recommend seeing your physician to make sure that everything is ok.</div>
+          <div class="p-3 mb-2 bg-success text-white" id=lowchance hidden=true>Great News! according to our PALM model
+            there is a <span id="Pneumonia-predict-low"></span> chance that you have Pneumonia. We would still
+            recommend seeing your physician, but we do not believe that there is Pneumonia present.</div>
+          <dialog id="mediumDialog">Our model could not accurately decide the presence or absense of Pneumonia<br>We
+            are still perfecting our model, but recommned seeing a physician for a diagnosis<br><button id="mediumhide">Close</button></dialog>
+          <dialog id="highDialog">The model detected that there is a higher probability of Pneumonia.<br>
+            Individual cases vary and we recommend that you consult your physician.<br><button id="highhide">Close</button></dialog>
+          <div><img class="img-rounded" id="shownimage" src="" hidden=true style="width:500px;height:500px"></div>
+          <dialog id="loadingmodel">
+            <div>
+              <img class="img-rounded" id="loadingimage" src="static/img/logos/loading.gif" style="width:600px;height:450px">
+            </div>
+          </dialog>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Grid -->
+  <section class="bg-light page-section" id="portfolio">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Sample Images</h2>
+          <h3 class="section-subheading text-muted">These are some images of Pnuemonia x-rays and normal x-rays<br>
+            The PALM score is the percentage chance that the image has Pneumonia</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="static/Images/NormalChest1.jpeg" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Normal</h4>
+            <p class="text-muted">PALM Score: 3.90%</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="static/Images/NormalChest2.jpeg" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Normal</h4>
+            <p class="text-muted">PALM Score: 1.48%</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="static/Images/NormalChest3.jpeg" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Normal</h4>
+            <p class="text-muted">PALM Score: 8.02%</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal4">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="static/Images/Pneumonia1.jpeg" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Pneumonia</h4>
+            <p class="text-muted">PALM Score: 96.25%</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="static/Images/Pneumonia2.jpeg" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Pneumonia</h4>
+            <p class="text-muted">PALM Score: 91.36%</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="static/Images/Pneumonia3.jpeg" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Pneumonia</h4>
+            <p class="text-muted">PALM Score: 91.05%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="page-section" id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">About</h2>
+          <h3 class="section-subheading text-muted">From Conceiving to Deploying</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <ul class="timeline">
+            <li>
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="static/img/about/1.jpg" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>August 2018</h4>
+                  <h4 class="subheading">Our Humble Beginnings</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">MyPALM was first created when our a group of friends decided that it was time
+                    for a change</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="static/img/about/2.jpg" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>December 2018</h4>
+                  <h4 class="subheading">An Agency is Born</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">MyPALM started in the production faze. The team started collecting massive
+                    amounts of data(~1TB or about 2 million images) and started the training of a legendary model:
+                    “PALM” This model is now the most advanced model in the world and actually stands for Pneumonia
+                    Artificial Learning Model. </p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="static/img/about/3.jpg" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>March 2019</h4>
+                  <h4 class="subheading">Transition to Full Service</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">The team decided it was time to move away from creating the model and move on
+                    to actually helping people with it. They went to local hospitals to show them this model and asked
+                    how they can use it to help people in need.</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="static/img/about/4.jpg" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>by 2020</h4>
+                  <h4 class="subheading">To The Future</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">The team hopes that before 2020 that this model will at least be used within
+                    the county that they reside. Although this may seem like a small step, it is one of many that will
+                    lead to revolutionizing the world.</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <h4>Be Part
+                  <br>Of Our
+                  <br>Story!</h4>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="page-section" id="faq-scroll-stop">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">FAQ</h2>
+          <h3 class="section-subheading text-muted">Frquently Asked Questions</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
+            <a href="#tab1" class="nav-link active" data-toggle="pill" role="tab" aria-controls="tab1" aria-selected="true">
+              <i class="mdi mdi-help-circle"></i> Frequently Asked Questions
+            </a>
+            <a href="#tab2" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab2" aria-selected="false">
+              <i class="mdi mdi-account"></i> Team
+            </a>
+            <a href="#tab3" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab3" aria-selected="false">
+              <i class="mdi mdi-account-settings"></i> Account
+            </a>
+            <a href="#tab4" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab4" aria-selected="false">
+              <i class="mdi mdi-heart"></i> Favorites
+            </a>
+            <a href="#tab5" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab5" aria-selected="false">
+              <i class="mdi mdi-coin"></i> Transactions
+            </a>
+            <a href="#tab6" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab6" aria-selected="false">
+              <i class="mdi mdi-help"></i> General help
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="tab-content" id="faq-tab-content">
+            <div class="tab-pane show active" id="tab1" role="tabpanel" aria-labelledby="tab1">
+              <div class="accordion" id="accordion-tab-1">
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-1-heading-1">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-1-content-1"
+                        aria-expanded="false" aria-controls="accordion-tab-1-content-1">What is MyPALM?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse show" id="accordion-tab-1-content-1" aria-labelledby="accordion-tab-1-heading-1"
+                    data-parent="#accordion-tab-1">
+                    <div class="card-body">
+                      <p>MyPALM is a technology created from our team, and it has the ability to take images of x-rays
+                        and figure out if that image has Pneumonia</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-1-heading-2">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-1-content-2"
+                        aria-expanded="false" aria-controls="accordion-tab-1-content-2">What is PALMnet?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse" id="accordion-tab-1-content-2" aria-labelledby="accordion-tab-1-heading-2"
+                    data-parent="#accordion-tab-1">
+                    <div class="card-body">
+                      <p>MyPALM is based off PALMnet, our secret Neural Network through which every images passses
+                        through. It is extremely accurate and uses convolutional Neural Networks. It also has all the
+                        power of Google's Resnetv50, since PALMnet was created using transfer learning with Resnet as
+                        the base model.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-1-heading-3">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-1-content-3"
+                        aria-expanded="false" aria-controls="accordion-tab-1-content-3">What are Neural Networks?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse" id="accordion-tab-1-content-3" aria-labelledby="accordion-tab-1-heading-3"
+                    data-parent="#accordion-tab-1">
+                    <div class="card-body">
+                      <p>This is a question that is hard to answer, since there are decades of theory behind it. At its
+                        lowest level, Neural Networks are essentially ways to get computers to do things with being
+                        explicitly programmed.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-1-heading-4">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-1-content-4"
+                        aria-expanded="false" aria-controls="accordion-tab-1-content-4">How can I learn to do these
+                        kinds of things?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse" id="accordion-tab-1-content-4" aria-labelledby="accordion-tab-1-heading-4"
+                    data-parent="#accordion-tab-1">
+                    <div class="card-body">
+                      <p>There are many great reasources out there to learn about Data Science and Machine Learning
+                        since it is a very hot skill in the Industy. Our recomendation is the Machine Learning Course
+                        on Courera by Andrew Ng. <a href="https://www.coursera.org/learn/machine-learning?utm_source=gg&utm_medium=sem&utm_content=07-StanfordML-US&campaignid=685340575&adgroupid=52515609594&device=c&keyword=machine%20learning%20mooc&matchtype=b&network=g&devicemodel=&adpostion=1t1&creativeid=243289762946&hide_mobile_promo&gclid=CjwKCAjw2qHsBRAGEiwAMbPoDEjh6GpF8IRN2fDnZsNr2nA-EOqoVzWbm7zWs0kJdY7aA1vzLgtxHBoC8GUQAvD_BwE">Machine
+                          Learning Course</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="tab2" role="tabpanel" aria-labelledby="tab2">
+              <div class="accordion" id="accordion-tab-2">
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-2-heading-1">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-2-content-1"
+                        aria-expanded="false" aria-controls="accordion-tab-2-content-1">Who are the creators of MyPALM?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse show" id="accordion-tab-2-content-1" aria-labelledby="accordion-tab-2-heading-1"
+                    data-parent="#accordion-tab-2">
+                    <div class="card-body">
+                      <p>The creators of Palm are actually two students out of Lambert High School. The first is Milind
+                        Chandramohan, the student responsible for creating this website. The second is Akshat Gautam,
+                        the one that created the legendary PALMnet Model.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-2-heading-2">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-2-content-2"
+                        aria-expanded="false" aria-controls="accordion-tab-2-content-2">What inspired the team to
+                        create MyPALM</button>
+                    </h5>
+                  </div>
+                  <div class="collapse" id="accordion-tab-2-content-2" aria-labelledby="accordion-tab-2-heading-2"
+                    data-parent="#accordion-tab-2">
+                    <div class="card-body">
+                      <p>Milind's Aunt died from Pneumonia, this god Milind thinking about how someone could die so
+                        fast from a disease that is so common. This is when Milind decided he was going to create
+                        MyPALM, and reached out to Akshat Gautam. This is when both worked together to create MyPALM</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-2-heading-3">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-2-content-3"
+                        aria-expanded="false" aria-controls="accordion-tab-2-content-3">Who are you, my warranty?!</button>
+                    </h5>
+                  </div>
+                  <div class="collapse" id="accordion-tab-2-content-3" aria-labelledby="accordion-tab-2-heading-3"
+                    data-parent="#accordion-tab-2">
+                    <div class="card-body">
+                      <p>Oh, I think we should just stay friends. I'll tell them you went down prying the wedding ring
+                        off his cold, dead finger. Aww, it's true. I've been hiding it for so long. Say it in Russian!
+                        Then throw her in the laundry room, which will hereafter be referred to as "the brig".</p>
+                      <p><strong>Example: </strong> We're rescuing ya. Robot 1-X, save my friends! And Zoidberg! <em>Then
+                          we'll go with that data file!</em> Okay, I like a challenge.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-2-heading-4">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-2-content-4"
+                        aria-expanded="false" aria-controls="accordion-tab-2-content-4">I haven't felt much of anything
+                        since my guinea pig died?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse" id="accordion-tab-2-content-4" aria-labelledby="accordion-tab-2-heading-4"
+                    data-parent="#accordion-tab-2">
+                    <div class="card-body">
+                      <p>And I'm his friend Jesus. Oh right. I forgot about the battle. OK, if everyone's finished
+                        being stupid. We'll need to have a look inside you with this camera. I'm just glad my fat, ugly
+                        mama isn't alive to see this day.</p>
+                      <p><strong>Example: </strong> Isn't it true that you have been paid for your testimony? Quite
+                        possible.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="tab3" role="tabpanel" aria-labelledby="tab3">
+              <div class="accordion" id="accordion-tab-3">
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-3-heading-1">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-3-content-1"
+                        aria-expanded="false" aria-controls="accordion-tab-3-content-1">Michelle, I don't regret this,
+                        but I both rue and lament it?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse show" id="accordion-tab-3-content-1" aria-labelledby="accordion-tab-3-heading-1"
+                    data-parent="#accordion-tab-3">
+                    <div class="card-body">
+                      <p>Look, last night was a mistake. We'll need to have a look inside you with this camera. Good
+                        news, everyone! There's a report on TV with some very bad news! You know, I was God once. You
+                        lived before you met me?!</p>
+                      <p><strong>Example: </strong>I'm Santa Claus! Pansy. That's a popular name today. Little "e", big
+                        "B"?</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-3-heading-2">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-3-content-2"
+                        aria-expanded="false" aria-controls="accordion-tab-3-content-2">Why am I sticky and naked?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse" id="accordion-tab-3-content-2" aria-labelledby="accordion-tab-3-heading-2"
+                    data-parent="#accordion-tab-3">
+                    <div class="card-body">
+                      <p>Did I miss something fun? Humans dating robots is sick. You people wonder why I'm still
+                        single? It's 'cause all the fine robot sisters are dating humans! Kids don't turn rotten just
+                        from watching TV.</p>
+                      <p><strong>Example: </strong>I usually try to keep my sadness pent up inside where it can fester
+                        quietly as a mental illness.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-3-heading-3">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-3-content-3"
+                        aria-expanded="false" aria-controls="accordion-tab-3-content-3">Is that a cooking show?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse" id="accordion-tab-3-content-3" aria-labelledby="accordion-tab-3-heading-3"
+                    data-parent="#accordion-tab-3">
+                    <div class="card-body">
+                      <p>OK, this has gotta stop. I'm going to remind Fry of his humanity the way only a woman can. You
+                        seem malnourished. Are you suffering from intestinal parasites? Check it out, y'all. Everyone
+                        who was invited is here. I am Singing Wind, Chief of the Martians.</p>
+                      <p><strong>Example: </strong>Man, I'm sore all over. I feel like I just went ten rounds with
+                        mighty Thor.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-3-heading-4">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-3-content-4"
+                        aria-expanded="false" aria-controls="accordion-tab-3-content-4">You are the last hope of the
+                        universe?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse" id="accordion-tab-3-content-4" aria-labelledby="accordion-tab-3-heading-4"
+                    data-parent="#accordion-tab-3">
+                    <div class="card-body">
+                      <p>I don't want to be rescued. I videotape every customer that comes in here, so that I may
+                        blackmail them later. Ah, computer dating. It's like pimping, but you rarely have to use the
+                        phrase "upside your head."</p>
+                      <p><strong>Example: </strong>Tell them I hate them.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="tab4" role="tabpanel" aria-labelledby="tab4">
+              <div class="accordion" id="accordion-tab-4">
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-4-heading-1">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-4-content-1"
+                        aria-expanded="false" aria-controls="accordion-tab-4-content-1">You, minion. Lift my arm?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse show" id="accordion-tab-4-content-1" aria-labelledby="accordion-tab-4-heading-1"
+                    data-parent="#accordion-tab-4">
+                    <div class="card-body">
+                      <p>AFTER HIM! A true inspiration for the children. What are you hacking off? Is it my torso?! 'It
+                        is!' My precious torso! I saw you with those two "ladies of the evening" at Elzars. Explain
+                        that. She also liked to shut up! Why not indeed!</p>
+                      <p><strong>Example: </strong>I feel like I was mauled by Jesus. Hello, little man. I will destroy
+                        you!</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-4-heading-2">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-4-content-2"
+                        aria-expanded="false" aria-controls="accordion-tab-4-content-2">No, I'm Santa Claus?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse" id="accordion-tab-4-content-2" aria-labelledby="accordion-tab-4-heading-2"
+                    data-parent="#accordion-tab-4">
+                    <div class="card-body">
+                      <p>I meant 'physically'. Look, perhaps you could let me work for a little food? I could clean the
+                        floors or paint a fence, or service you sexually? When the lights go out, it's nobody's
+                        business what goes on between two consenting adults.</p>
+                      <p><strong>Example: </strong>Nay, I respect and admire Harold Zoid too much to beat him to death
+                        with his own Oscar.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-4-heading-3">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-4-content-3"
+                        aria-expanded="false" aria-controls="accordion-tab-4-content-3">Belligerent and numerous?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse" id="accordion-tab-4-content-3" aria-labelledby="accordion-tab-4-heading-3"
+                    data-parent="#accordion-tab-4">
+                    <div class="card-body">
+                      <p>Hey, what kinda party is this? There's no booze and only one hooker. I'm just glad my fat,
+                        ugly mama isn't alive to see this day. Wow! A superpowers drug you can just rub onto your skin?
+                        You'd think it would be something you'd have to freebase. Well, let's just dump it in the sewer
+                        and say we delivered it. You guys realize you live in a sewer, right? </p>
+                      <p><strong>Example: </strong>Oh Leela! You're the only person I could turn to; you're the only
+                        person who ever loved me.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-4-heading-4">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-4-content-4"
+                        aria-expanded="false" aria-controls="accordion-tab-4-content-4">Take me to your leader?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse" id="accordion-tab-4-content-4" aria-labelledby="accordion-tab-4-heading-4"
+                    data-parent="#accordion-tab-4">
+                    <div class="card-body">
+                      <p>PUNY HUMAN NUMBER ONE, PUNY HUMAN NUMBER TWO, and Morbo's good friend, Richard Nixon.
+                        Interesting. No, wait, the other thing: tedious. All I want is to be a monkey of moderate
+                        intelligence who wears a suit… that's why I'm transferring to business school! Morbo can't
+                        understand his teleprompter because he forgot how you say that letter that's shaped like a man
+                        wearing a hat.</p>
+                      <p><strong>Example: </strong>If rubbin' frozen dirt in your crotch is wrong, hey I don't wanna be
+                        right.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="tab5" role="tabpanel" aria-labelledby="tab5">
+              <div class="accordion" id="accordion-tab-5">
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-5-heading-1">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-5-content-1"
+                        aria-expanded="false" aria-controls="accordion-tab-5-content-1">Say what?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse show" id="accordion-tab-5-content-1" aria-labelledby="accordion-tab-5-heading-1"
+                    data-parent="#accordion-tab-5">
+                    <div class="card-body">
+                      <p>That could be 'my' beautiful soul sitting naked on a couch. If I could just learn to play this
+                        stupid thing. Oh, I don't have time for this. I have to go and buy a single piece of fruit with
+                        a coupon and then return it, making people wait behind me while I complain. I'm just glad my
+                        fat, ugly mama isn't alive to see this day. For one beautiful night I knew what it was like to
+                        be a grandmother. Subjugated, yet honored. But existing is basically all I do! I never loved
+                        you.</p>
+                      <p><strong>Example: </strong>A sexy mistake. And I'd do it again!</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-5-heading-2">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-5-content-2"
+                        aria-expanded="false" aria-controls="accordion-tab-5-content-2">Who's brave enough to fly into
+                        something we all keep calling a death sphere?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse" id="accordion-tab-5-content-2" aria-labelledby="accordion-tab-5-heading-2"
+                    data-parent="#accordion-tab-5">
+                    <div class="card-body">
+                      <p>Maybe I love you so much I love you no matter who you are pretending to be. Ah, the 'Breakfast
+                        Club' soundtrack! I can't wait til I'm old enough to feel ways about stuff! Now Fry, it's been
+                        a few years since medical school, so remind me.</p>
+                      <p><strong>Example: </strong>Disemboweling in your species: fatal or non-fatal?</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-5-heading-3">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-5-content-3"
+                        aria-expanded="false" aria-controls="accordion-tab-5-content-3">You mean while I'm sleeping in
+                        it?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse" id="accordion-tab-5-content-3" aria-labelledby="accordion-tab-5-heading-3"
+                    data-parent="#accordion-tab-5">
+                    <div class="card-body">
+                      <p>We can't compete with Mom! Her company is big and evil! Ours is small and neutral! Look,
+                        everyone wants to be like Germany, but do we really have the pure strength of 'will'? I just
+                        told you! You've killed me!</p>
+                      <p><strong>Example: </strong>But, like most politicians, he promised more than he could deliver.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-5-heading-4">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-5-content-4"
+                        aria-expanded="false" aria-controls="accordion-tab-5-content-4">And until then, I can never
+                        die?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse" id="accordion-tab-5-content-4" aria-labelledby="accordion-tab-5-heading-4"
+                    data-parent="#accordion-tab-5">
+                    <div class="card-body">
+                      <p>I don't know what you did, Fry, but once again, you screwed up! Now all the planets are gonna
+                        start cracking wise about our mamas. Well, let's just dump it in the sewer and say we delivered
+                        it.</p>
+                      <p><strong>Example: </strong>Have you ever tried just turning off the TV, sitting down with your
+                        children, and hitting them? Hey, tell me something. You've got all this money. How come you
+                        always dress like you're doing your laundry?</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="tab6" role="tabpanel" aria-labelledby="tab6">
+              <div class="accordion" id="accordion-tab-6">
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-6-heading-1">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-6-content-1"
+                        aria-expanded="false" aria-controls="accordion-tab-6-content-1">Doomsday device?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse show" id="accordion-tab-6-content-1" aria-labelledby="accordion-tab-6-heading-1"
+                    data-parent="#accordion-tab-6">
+                    <div class="card-body">
+                      <p>Ah, now the ball's in Farnsworth's court! We'll need to have a look inside you with this
+                        camera. Stop it, stop it. It's fine. I will 'destroy' you! Bender! Ship! Stop bickering or I'm
+                        going to come back there and change your opinions manually!</p>
+                      <p><strong>Example: </strong>So I really am important? How I feel when I'm drunk is correct?</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-6-heading-2">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-6-content-2"
+                        aria-expanded="false" aria-controls="accordion-tab-6-content-2">And so we say goodbye to our
+                        beloved pet, Nibbler?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse" id="accordion-tab-6-content-2" aria-labelledby="accordion-tab-6-heading-2"
+                    data-parent="#accordion-tab-6">
+                    <div class="card-body">
+                      <p>Nibbler, who's gone to a place where I, too, hope one day to go. The toilet. But existing is
+                        basically all I do! I suppose I could part with 'one' and still be feared. I just told you!
+                        You've killed me!</p>
+                      <p><strong>Example: </strong>What's with you kids? Every other day it's food, food, food.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-6-heading-3">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-6-content-3"
+                        aria-expanded="false" aria-controls="accordion-tab-6-content-3">Tell her you just want to talk?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse" id="accordion-tab-6-content-3" aria-labelledby="accordion-tab-6-heading-3"
+                    data-parent="#accordion-tab-6">
+                    <div class="card-body">
+                      <p>It has nothing to do with mating. Soon enough. There, now he's trapped in a book I wrote: a
+                        crummy world of plot holes and spelling errors! Daylight and everything. Hey! I'm a
+                        porno-dealing monster, what do I care what you think?</p>
+                      <p><strong>Example: </strong>Is that a cooking show? It doesn't look so shiny to me. And why did
+                        'I' have to take a cab?</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="accordion-tab-6-heading-4">
+                    <h5>
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-6-content-4"
+                        aria-expanded="false" aria-controls="accordion-tab-6-content-4">Good man. Nixon's pro-war and
+                        pro-family?</button>
+                    </h5>
+                  </div>
+                  <div class="collapse" id="accordion-tab-6-content-4" aria-labelledby="accordion-tab-6-heading-4"
+                    data-parent="#accordion-tab-6">
+                    <div class="card-body">
+                      <p>I don't 'need' to drink. I can quit anytime I want! THE BIG BRAIN AM WINNING AGAIN! I AM THE
+                        GREETEST! NOW I AM LEAVING EARTH, FOR NO RAISEN! There's one way and only one way to determine
+                        if an animal is intelligent. Dissect its brain!</p>
+                      <p><strong>Example: </strong>Guess again. Yeah, I do that with my stupidness. And when we woke
+                        up, we had these bodies.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="bg-light page-section" id="team">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+          <h3 class="section-subheading text-muted">The people responsible for creating MyPALM</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="static/img/team/Milind1.jpg" alt="">
+            <h4>Milind Chandramohan</h4>
+            <p class="text-muted">Lead Architect</p>
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="static/img/team/Akshat.jpg" alt="">
+            <h4>Akshat Gautam</h4>
+            <p class="text-muted">ML Specialist</p>
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="static/img/team/Nilesh1.jpg" alt="">
+            <h4>Eric
+              Ahn</h4>
+            <br>
+            <p class="text-muted">Lead Marketing</p>
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <p class="large text-muted">MyPALM is this teams greatest achievement. Everyone learns many things in life,
+            but these people were actually able to use that knowledge to help others</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients -->
+
+  <!-- Contact -->
+  <section class="page-section" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Contact Us</h2>
+          <h3 class="section-subheading text-muted">We make mistakes too, let us know!</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <form id="contactForm" name="sentMessage" novalidate="novalidate">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input class="form-control" id="name" type="text" placeholder="Your Name *" required="required"
+                    data-validation-required-message="Please enter your name.">
+                  <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" id="email" type="email" placeholder="Your Email *" required="required"
+                    data-validation-required-message="Please enter your email address.">
+                  <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" required="required"
+                    data-validation-required-message="Please enter your phone number.">
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <textarea class="form-control" id="message" placeholder="Your Message *" required="required"
+                    data-validation-required-message="Please enter a message."></textarea>
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-lg-12 text-center">
+                <div id="success"></div>
+                <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">Send Message</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4">
+          <span class="copyright">Copyright &copy; Your Website 2019</span>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline quicklinks">
+            <li class="list-inline-item">
+              <a href="#">Privacy Policy</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">Terms of Use</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Portfolio Modals -->
+
+  <!-- Modal 1 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Normal Chest 1</h2>
+                <p class="item-intro text-muted">This is a picture of a Healthy chest X-ray</p>
+                <img class="img-fluid d-block mx-auto" src="static/Images/NormalChest1.jpeg" alt="">
+                <p>Our model correctly predicts this is an x-ray without Pneumonia</p>
+                <ul class="list-inline">
+                  <li>Palm Score: 3.90%</li>
+                </ul>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close Image</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Normal Chest 2</h2>
+                <p class="item-intro text-muted">This is a picture of a Healthy chest X-ray</p>
+                <img class="img-fluid d-block mx-auto" src="static/Images/NormalChest2.jpeg" alt="">
+                <p>Our model correctly predicts this is an x-ray without Pneumonia</p>
+                <ul class="list-inline">
+                  <li>PALM Score: 1.48%</li>
+                </ul>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close Image</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Normal Chest 3</h2>
+                <p class="item-intro text-muted">This is a picture of a Healthy chest X-ray</p>
+                <img class="img-fluid d-block mx-auto" src="static/Images/NormalChest3.jpeg" alt="">
+                <p>Our model correctly predicts this is an x-ray without Pneumonia</p>
+                <ul class="list-inline">
+                  <li>PALM Score: 8.02%</li>
+                </ul>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close Image</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Pneumonia Chest 1</h2>
+                <p class="item-intro text-muted">This is a picture of a chest that shows signs of Pneumonia</p>
+                <img class="img-fluid d-block mx-auto" src="static/Images/Pneumonia1.jpeg" alt="">
+                <p>Our model correctly predicts this is an x-ray with Pneumonia</p>
+                <ul class="list-inline">
+                  <li>PALM Score: 96.25%</li>
+                </ul>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close Image</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 5 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Pneumonia Chest 2</h2>
+                <p class="item-intro text-muted">This is a picture of a chest that shows signs of Pneumonia</p>
+                <img class="img-fluid d-block mx-auto" src="static/Images/Pneumonia2.jpeg" alt="">
+                <p>Our model correctly predicts this is an x-ray with Pneumonia</p>
+                <ul class="list-inline">
+                  <li>PALM Score: 96.25%</li>
+                </ul>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close Project</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 6 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Pneumonia Chest 1</h2>
+                <p class="item-intro text-muted">This is a picture of a chest that shows signs of Pneumonia</p>
+                <img class="img-fluid d-block mx-auto" src="static/Images/Pneumonia3.jpeg" alt="">
+                <p>Our model correctly predicts this is an x-ray with Pneumonia<</p> <ul class="list-inline">
+                    <li>PALM Score: 96.25%</li>
+                    </ul>
+                    <button class="btn btn-primary" data-dismiss="modal" type="button">
+                      <i class="fas fa-times"></i>
+                      Close Project</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="static/vendor/jquery/jquery.min.js"></script>
+  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Contact form JavaScript -->
+  <script src="static/js/jqBootstrapValidation.js"></script>
+  <script src="static/js/contact_me.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="static/js/agency.min.js"></script>
+
+  <!-- Functionality of the website -->
+  <script src="static/js/functionality.js"></script>
+</body>
+
+</html>
